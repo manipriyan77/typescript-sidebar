@@ -22,7 +22,7 @@ code {
 }
 
 .icon-menu {
-  width: 35px;
+  width: 55px;
   height: 100vh;
 }
 
@@ -33,6 +33,7 @@ code {
 
 .menu {
   background-color: lightgreen;
+  padding-top: 10px;
 }
 
 .menu-text:hover {

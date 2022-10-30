@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { AiOutlineMenu, AiFillHome } from "react-icons/ai";
 import { IoMdPerson } from "react-icons/io";
-import { BsFillBagFill, BsFillLockFill, BsFillQuestionCircleFill } from "react-icons/bs";
+import { BsFillBagFill, BsFillLockFill, BsFillQuestionCircleFill, BsXLg } from "react-icons/bs";
 import { data } from "../data";
-import "../index.css";
+import { FlexColumn, MenuText, MenuWrapper } from "../Style/Sidebar.style";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
@@ -20,34 +20,34 @@ const Sidebar = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className={`${isOpen ? "icon-menu" : "expanded-menu"} menu`}>
-      <AiOutlineMenu onClick={menuExpandHandler} />
-      <div className={`menu-flex-column`}>
+    <MenuWrapper className={`${isOpen ? "icon-menu" : "expanded-menu"} menu`}>
+      {isOpen ? (
+        <AiOutlineMenu onClick={menuExpandHandler} />
+      ) : (
+        <BsXLg onClick={menuExpandHandler} />
+      )}
+      <FlexColumn>
         {isOpen ? (
-          <div className="menu-flex-column">
+          <FlexColumn>
             {iconsArray.map((icon: JSX.Element, i: number) => {
-              return (
-                <span key={i} className="menu-text">
-                  {icon}
-                </span>
-              );
+              return <MenuText key={i}>{icon}</MenuText>;
             })}
-          </div>
+          </FlexColumn>
         ) : (
           <div>
-            <div className="menu-flex-column">
+            <FlexColumn>
               {data.map((menu: string, i: number) => {
                 return (
-                  <span key={i} className="menu-text">
+                  <MenuText key={i} onClick={menuExpandHandler}>
                     {menu}
-                  </span>
+                  </MenuText>
                 );
               })}
-            </div>
+            </FlexColumn>
           </div>
         )}
-      </div>
-    </div>
+      </FlexColumn>
+    </MenuWrapper>
   );
 };
 
